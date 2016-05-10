@@ -15,6 +15,7 @@ local function BNToastFrame_OnClick(self, btn, ...)
 	if(btn == "LeftButton") then
 		ChatFrame_SendTell(givenName);
 		BNToastFrame:Hide();
+		DropDownList1:Hide();
 	elseif(btn == "RightButton") then
 		local name, level, class, area, connected = GetFriendInfo(givenName);
 		if(name) then
@@ -26,8 +27,8 @@ end
 BNToastFrameClickFrame:RegisterForClicks("AnyUp", "AnyDown");
 BNToastFrameClickFrame:SetScript("OnClick", BNToastFrame_OnClick);
 
-local test = CreateFrame("Frame");
-test:SetScript("OnEvent", function(self, event, arg1, ...)
+local BNetFrame = CreateFrame("Frame");
+BNetFrame:SetScript("OnEvent", function(self, event, arg1, ...)
 	local name = arg1:gmatch(pattern1)();
 	if(name) then
 		BNToastFrame_AddToast(1, name);
@@ -37,7 +38,7 @@ test:SetScript("OnEvent", function(self, event, arg1, ...)
 	if(not name) then return; end
 	BNToastFrame_AddToast(2, name);
 end);
-test:RegisterEvent("CHAT_MSG_SYSTEM");
+BNetFrame:RegisterEvent("CHAT_MSG_SYSTEM");
 
 local function filter(self, event, arg1, ...)
 	local name = arg1:gmatch(pattern1)() or arg1:gmatch(pattern2)();
