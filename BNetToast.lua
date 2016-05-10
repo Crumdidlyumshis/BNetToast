@@ -15,7 +15,6 @@ local function BNToastFrame_OnClick(self, btn, ...)
 	local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 	if(btn == "LeftButton") then
 		BNToastFrame:Hide();
-		DropDownList1:Hide();
 		if(toastType == 1) then
 			ChatFrame_SendTell(givenName);
 		end
