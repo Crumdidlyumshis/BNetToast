@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: BNetToast
+## Version: 1.0
+## Notes: Port of Bonho's FriendsFrame addon from Valkery-WoW for 1.12.1, thanks to Bunny67 (mastermind of the ElvUI backport for 3.3.5a).
+## Author: Bonho, Bunny67
+
+BNetToast.lua
