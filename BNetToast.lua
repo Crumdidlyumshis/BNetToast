@@ -1,6 +1,8 @@
-local gsub = string.gsub
 local gmatch = string.gmatch
+local gsub = string.gsub
 local CreateFrame = CreateFrame
+local GetFriendInfo = GetFriendInfo
+local PlaySound = PlaySound
 
 local pattern1 = ERR_FRIEND_ONLINE_SS:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]");
 local pattern2 = ERR_FRIEND_OFFLINE_S:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]");
