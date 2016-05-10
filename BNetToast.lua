@@ -9,20 +9,21 @@ function BNGetFriendInfoByID(name)
 	return nil, name, "";
 end
 
-local function BNToastFrame_OnClick(self, btn)
+local function BNToastFrame_OnClick(self, btn, ...)
 	local toastData = BNToastFrame.toastData;
-	--[[if(btn == "LeftButton") then
+	if(btn == "LeftButton") then
 		local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 		ChatFrame_SendTell(givenName);
-	elseif(btn == "RightButton") then]]
+	elseif(btn == "RightButton") then
 		local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 		local name, level, class, area, connected = GetFriendInfo(givenName);
 		if(name) then
 			PlaySound("igMainMenuOptionCheckBoxOn");
 			FriendsFrame_ShowDropdown(name, connected, nil, nil, nil, 1);
 		end
-	--end
+	end
 end
+BNToastFrameClickFrame:RegisterForClicks("AnyUp", "AnyDown");
 BNToastFrameClickFrame:SetScript("OnClick", BNToastFrame_OnClick);
 
 local test = CreateFrame("Frame");
