@@ -14,6 +14,7 @@ local function BNToastFrame_OnClick(self, btn, ...)
 	local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 	if(btn == "LeftButton") then
 		ChatFrame_SendTell(givenName);
+		BNToastFrame:Hide();
 	elseif(btn == "RightButton") then
 		local name, level, class, area, connected = GetFriendInfo(givenName);
 		if(name) then
