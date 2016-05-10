@@ -11,11 +11,10 @@ end
 
 local function BNToastFrame_OnClick(self, btn, ...)
 	local toastData = BNToastFrame.toastData;
+	local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 	if(btn == "LeftButton") then
-		local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 		ChatFrame_SendTell(givenName);
 	elseif(btn == "RightButton") then
-		local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 		local name, level, class, area, connected = GetFriendInfo(givenName);
 		if(name) then
 			PlaySound("igMainMenuOptionCheckBoxOn");
