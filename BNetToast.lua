@@ -16,15 +16,16 @@ local function BNToastFrame_OnClick(self, btn, ...)
 	local toastData = BNToastFrame.toastData;
 	local presenceID, givenName, surname = BNGetFriendInfoByID(toastData);
 	if(btn == "LeftButton") then
-		BNToastFrame:Hide();
 		if(toastType == 1) then
 			ChatFrame_SendTell(givenName);
 		end
 	elseif(btn == "RightButton") then
 		local name, level, class, area, connected = GetFriendInfo(givenName);
+		PlaySound("igMainMenuOptionCheckBoxOn");
 		if(name) then
-			PlaySound("igMainMenuOptionCheckBoxOn");
 			FriendsFrame_ShowDropdown(name, connected, nil, nil, nil, 1);
+		else
+			FriendsFrame_ShowDropdown(givenName, 1);
 		end
 	end
 end
