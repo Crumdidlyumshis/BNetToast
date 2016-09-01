@@ -7,6 +7,26 @@ local PlaySound = PlaySound
 local pattern1 = ERR_FRIEND_ONLINE_SS:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]");
 local pattern2 = ERR_FRIEND_OFFLINE_S:gsub("%%s", "(%.+)"):gsub("%[", "%%["):gsub("%]","%%]");
 
+function FriendsFrameBroadcastInput_OnEnterPressed(self)
+	local broadcastText = self:GetText();
+	if(GetNumFriends() < 1) then return; end
+	local numButtons = #FriendsFrameFriendsScrollFrame.buttons;
+	for i = 1, numButtons do
+		local friend = _G["FriendsFrameFriendsScrollFrameButton" .. i];
+		if(friend.id and friend.buttonType == FRIENDS_BUTTON_TYPE_WOW) then
+			local name, level, class, zone, connected, status, note = GetFriendInfo(friend.id);
+			if(connected) then
+				SendChatMessage(broadcastText, "WHISPER", nil, name);
+			end
+		end
+	end
+	FriendsFrameBroadcastInput_UpdateDisplay(self, broadcastText);
+end
+
+FriendsFrameBroadcastInput:SetScript("OnEnterPressed", FriendsFrameBroadcastInput_OnEnterPressed);
+FriendsFrameBroadcastInput:Show()
+FriendsFrameBroadcastInput.Hide = function() end
+
 function BNGetFriendInfoByID(name)
 	return nil, name, "";
 end
